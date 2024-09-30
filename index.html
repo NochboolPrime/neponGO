@@ -23,7 +23,6 @@
         .welcome {
             text-align: center;
             margin-top: 20px;
-            font-size: 2em;
             color: #e4368d; /* Цвет текста на приветственном экране */
         }
         .gif-container {
@@ -94,19 +93,60 @@
 <script>
     const sets = {
         set1: [
-            { japanese: "こんにちは", translation: "Здравствуйте" },
-            { japanese: "ありがとう", translation: "Спасибо" },
-            { japanese: "さようなら", translation: "До свидания" },
-            { japanese: "はい", translation: "Да" },
-            { japanese: "いいえ", translation: "Нет" }
+            { japanese: "Конбанва", translation: "Приветствие на вечер" },
+            { japanese: "Охай", translation: "Приветствие утром" },
+            { japanese: "Данойни ", translation: "Каким образом" },
+            { japanese: "Нипон", translation: "Япония" },
+            { japanese: "Намае", translation: "Имя" },
+            { japanese: "Доу", translation: "Как" },
+            { japanese: "Ёкотта", translation: "Хорошо" },
+            { japanese: "Кирей", translation: "Чистый" },
+            { japanese: "Нини", translation: "Что" },
+            { japanese: "Сите", translation: "Свершать, делать" },
+            { japanese: "Киёу", translation: "Сегодня" },
+            { japanese: "Нэзэ", translation: "Почему" },
+            { japanese: "Аригатоу", translation: "Спасибо" },
+            { japanese: "Тай", translation: "Должно быть" },
+            { japanese: "Ята", translation: "Сделал" },
+            { japanese: "Со", translation: "Так" },
+            { japanese: "Нипонго", translation: "Японский язык" },
+            { japanese: "Кудайсай", translation: "Дайте" },
+            { japanese: "Дайёбу", translation:"Все в порядке" },
+            { japanese:"Фурусиши", translation:"Старый"},
+			{ japanese:"Миёнуи", translation:"Завтра"},
+			{ japanese:"Киноу", translation:"Вчера"},
+			{ japanese:"Дэсу", translation:"Считать)"},
+			{ japanese:"Суру", translation:"Опытный"},
+			{ japanese:"Хонто", translation:"Действительно"},
+			{ japanese:"Ни", translation:"Что"},
+			{ japanese:"Дэкиру", translation:"Смочь)"},
+			{ japanese:"Косай", translation:"Небольшой"},
+			{ japanese:"Ии", translation:"Хорошо"},
+			{ japanese:"Окуии", translation:"Большой"},
+			{ japanese:"Сити", translation:"Знать"},
+			{ japanese:"Моу", translation:"Уже"},
+			{ japanese:"На ноу", translation:"Что"},
+			{ japanese:"Дэму",translation:"Смочь"},
+			{ japanese:"Ёдо",translation:"Цвет"},
+			{ japanese:"Вотсу",translation:"Нет, другой"},
+			{ japanese:"Доре",translation:"Который"},
+			{ japanese:"Ииу",translation:"Говорящий"},
+			{ japanese:"Кудайсай",translation:"Дать)"},
+			{ japanese:"Декёру",translation:"Справиться"},
+			{ japanese:"Икёу",translation:"Делать"},
+			{ japanese:"Ари",translation:"Есть)"},
+			{ japanese:"Jikân",translation:"Время)"},
+			{ japanese :"Ниру",translation :"Спать"},
+			{japanese :"Какатта.",translation :"Попался"}, 
+			{japanese :"Боку",translation :"Я"} 
         ],
-        set2: [
-            { japanese: "おはようございます", translation: "Доброе утро" },
-            { japanese: "こんばんは", translation: "Добрый вечер" },
-            { japanese: "すみません", translation: "Извините" },
-            { japanese: "どういたしまして", translation: "Пожалуйста (в ответ на спасибо)" },
-            { japanese: "おやすみなさい", translation: "Спокойной ночи" }
-        ]
+        set2 : [
+             {japanese : "おはようございます" ,translation : "Доброе утро"}, 
+             {japanese : "こんばんは" ,translation : "Добрый вечер"}, 
+             {japanese : "すみません" ,translation : "Извините"}, 
+             {japanese : "どういたしまして" ,translation : "Пожалуйста"}, 
+             {japanese : "おやすみなさい" ,translation : "Спокойной ночи"} 
+         ]
     };
 
     let currentWordIndex = 0;
@@ -121,79 +161,79 @@
 
     function showWord() {
         if (currentWordIndex < selectedSet.length) {
-            quizContainer.innerHTML = `
+           quizContainer.innerHTML = `
                 <div class="card">
                     <p>${selectedSet[currentWordIndex].japanese}</p>
                     <input type="text" id="answer" placeholder="Введите перевод">
                 </div>
-            `;
-            nextButton.classList.remove('hidden');
-            submitButton.classList.add('hidden');
-        } else {
-            nextButton.classList.add('hidden');
-            submitButton.classList.remove('hidden');
-        }
-    }
+           `;
+           nextButton.classList.remove('hidden');
+           submitButton.classList.add('hidden');
+       } else {
+           nextButton.classList.add('hidden');
+           submitButton.classList.remove('hidden');
+       }
+   }
 
-    function startQuiz(set) {
-        selectedSet = set;
-        currentWordIndex = 0;
+   function startQuiz(set) {
+       selectedSet = set;
+       currentWordIndex = 0;
 
-        startScreen.classList.add('hidden');
-        quizContainer.classList.remove('hidden');
-        backButton.classList.remove('hidden'); // Показываем кнопку Назад
-        
-        showWord();
-    }
+       startScreen.classList.add('hidden');
+       quizContainer.classList.remove('hidden');
+       backButton.classList.remove('hidden'); // Показываем кнопку Назад
+       
+       showWord();
+   }
 
-    function showStartScreen() {
-        startScreen.classList.remove('hidden');
-        quizContainer.classList.add('hidden');
-        resultContainer.innerHTML = ''; // Очищаем результаты
-        backButton.classList.add('hidden'); // Скрываем кнопку Назад
-    }
+   function showStartScreen() {
+       startScreen.classList.remove('hidden');
+       quizContainer.classList.add('hidden');
+       resultContainer.innerHTML = ''; // Очищаем результаты
+       backButton.classList.add('hidden'); // Скрываем кнопку Назад
+   }
 
-    document.getElementById('continue-btn').addEventListener('click', () => {
-        document.querySelector('.welcome').classList.add('hidden'); // Скрываем приветственный экран
-        document.querySelector('.gif-container').classList.add('hidden'); // Скрываем GIF
-        startScreen.classList.remove('hidden'); // Показываем экран выбора комплекта
-    });
+   document.getElementById('continue-btn').addEventListener('click', () => {
+       document.querySelector('.welcome').classList.add('hidden'); // Скрываем приветственный экран
+       document.querySelector('.gif-container').classList.add('hidden'); // Скрываем GIF
+       startScreen.classList.remove('hidden'); // Показываем экран выбора комплекта
+   });
 
-    document.getElementById('set1-btn').addEventListener('click', () => startQuiz(sets.set1));
-    document.getElementById('set2-btn').addEventListener('click', () => startQuiz(sets.set2));
+   document.getElementById('set1-btn').addEventListener('click', () => startQuiz(sets.set1));
+   document.getElementById('set2-btn').addEventListener('click', () => startQuiz(sets.set2));
 
-    nextButton.addEventListener('click', () => {
-        const userAnswer = document.getElementById('answer').value.trim();
-        
-        if (userAnswer) {
-            selectedSet[currentWordIndex].userAnswer = userAnswer; // Сохраняем ответ пользователя
-            currentWordIndex++;
-            showWord();
-        } else {
-            alert("Пожалуйста, введите перевод перед переходом к следующему слову.");
-        }
-    });
+   nextButton.addEventListener('click', () => {
+       const userAnswer = document.getElementById('answer').value.trim();
+       
+       if (userAnswer) {
+           selectedSet[currentWordIndex].userAnswer = userAnswer; // Сохраняем ответ пользователя
+           currentWordIndex++;
+           showWord();
+       } else {
+           alert("Пожалуйста, введите перевод перед переходом к следующему слову.");
+       }
+   });
 
-    submitButton.addEventListener('click', () => {
-        let score = 0;
-        let feedback = '';
+   submitButton.addEventListener('click', () => {
+       let score = 0;
+       let feedback = '';
 
-        selectedSet.forEach((word) => {
-            if (word.userAnswer === word.translation) {
-                score++;
-                feedback += `<p style="color: green;">${word.japanese} - Правильно!</p>`;
-            } else {
-                feedback += `<p style="color: red;">${word.japanese} - Неправильно! Правильный ответ: ${word.translation}</p>`;
-            }
-        });
+       selectedSet.forEach((word) => {
+           if (word.userAnswer === word.translation) {
+               score++;
+               feedback += `<p style="color: green;">${word.japanese} - Правильно!</p>`;
+           } else {
+               feedback += `<p style="color:red;">${word.japanese} - Неправильно! Правильный ответ:${word.translation}</p>`;
+           }
+       });
 
-        resultContainer.innerHTML = `<h2>Результаты:</h2><p>Ваш счет: ${score} из ${selectedSet.length}</p>${feedback}`;
-        
-        // Показать кнопку Назад после завершения теста
-        backButton.classList.remove('hidden');
-    });
+       resultContainer.innerHTML = `<h2>Результаты:</h2><p>Ваш счет:${score} из ${selectedSet.length}</p>${feedback}`;
+       
+       // Показать кнопку Назад после завершения теста
+       backButton.classList.remove('hidden');
+   });
 
-    backButton.addEventListener('click', showStartScreen); // Обработчик для кнопки Назад
+   backButton.addEventListener('click', showStartScreen); // Обработчик для кнопки Назад
 
 </script>
 
