@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Изучение японского языка</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif; /* Шрифт в стиле аниме */
+            background: url('images/a01bf2c5564f933dcf1cb2de9945a145.jpg') no-repeat center center fixed; /* Локальное фоновое изображение */
+            background-size: cover; /* Заполнение фона */
+            margin: 0;
+            padding: 20px;
+            color: #6264f1; /* Темный текст */
+        }
+        h1 {
+            text-align: center;
+            color: #ff69b4; /* Яркий цвет заголовка */
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Тень для заголовка */
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый фон карточки */
+            padding: 20px;
+            margin: 10px auto; /* Центрирование карточки */
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            max-width: 400px; /* Максимальная ширина карточки */
+        }
+        button {
+            background-color: #ff1493; /* Цвет кнопок */
+            color: white;
+            border: none;
+            padding: 15px; /* Увеличенные отступы для кнопок */
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.2em; /* Увеличенный размер шрифта */
+            margin-top: 10px;
+            transition: background-color 0.3s ease; /* Плавный переход цвета при наведении */
+        }
+        button:hover {
+            background-color: #c71585; /* Цвет кнопки при наведении */
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center; /* Центрирование результатов */
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<h1>テスト (Тест) по японскому языку</h1>
+
+<div id="start-screen">
+    <h2>Выберите комплект слов:</h2>
+    <button id="set1-btn">Комплект 1</button>
+    <button id="set2-btn">Комплект 2</button>
+</div>
+
+<div id="quiz-container" class="hidden"></div>
+<button id="next-btn" class="hidden">次へ (Далее)</button>
+<button id="submit-btn" class="hidden">結果を確認する (Проверить ответы)</button>
+<button id="back-btn" class="hidden">Назад</button> <!-- Кнопка Назад -->
+<div class="result" id="result-container"></div>
+
+<script>
+    const sets = {
+        set1: [
+            { japanese: "こんにちは", translation: "Здравствуйте" },
+            { japanese: "ありがとう", translation: "Спасибо" },
+            { japanese: "さようなら", translation: "До свидания" },
+            { japanese: "はい", translation: "Да" },
+            { japanese: "いいえ", translation: "Нет" }
+        ],
+        set2: [
+            { japanese: "おはようございます", translation: "Доброе утро" },
+            { japanese: "こんばんは", translation: "Добрый вечер" },
+            { japanese: "すみません", translation: "Извините" },
+            { japanese: "どういたしまして", translation: "Пожалуйста (в ответ на спасибо)" },
+            { japanese: "おやすみなさい", translation: "Спокойной ночи" }
+        ]
+    };
+
+    let currentWordIndex = 0;
+    let selectedSet = [];
+
+    const startScreen = document.getElementById('start-screen');
+    const quizContainer = document.getElementById('quiz-container');
+    const resultContainer = document.getElementById('result-container');
+    const nextButton = document.getElementById('next-btn');
+    const submitButton = document.getElementById('submit-btn');
+    const backButton = document.getElementById('back-btn'); // Кнопка Назад
+
+    function showWord() {
+        if (currentWordIndex < selectedSet.length) {
+            quizContainer.innerHTML = `
+                <div class="card">
+                    <p>${selectedSet[currentWordIndex].japanese}</p>
+                    <input type="text" id="answer" placeholder="Введите перевод">
+                </div>
+            `;
+            nextButton.classList.remove('hidden');
+            submitButton.classList.add('hidden');
+        } else {
+            nextButton.classList.add('hidden');
+            submitButton.classList.remove('hidden');
+        }
+    }
+
+    function startQuiz(set) {
+        selectedSet = set;
+        currentWordIndex = 0;
+
+        startScreen.classList.add('hidden');
+        quizContainer.classList.remove('hidden');
+        backButton.classList.remove('hidden'); // Показываем кнопку Назад
+        
+        showWord();
+    }
+
+    function showStartScreen() {
+        startScreen.classList.remove('hidden');
+        quizContainer.classList.add('hidden');
+        resultContainer.innerHTML = ''; // Очищаем результаты
+        backButton.classList.add('hidden'); // Скрываем кнопку Назад
+    }
+
+    document.getElementById('set1-btn').addEventListener('click', () => startQuiz(sets.set1));
+    document.getElementById('set2-btn').addEventListener('click', () => startQuiz(sets.set2));
+
+    nextButton.addEventListener('click', () => {
+        const userAnswer = document.getElementById('answer').value.trim();
+        
+        if (userAnswer) {
+            selectedSet[currentWordIndex].userAnswer = userAnswer; // Сохраняем ответ пользователя
+            currentWordIndex++;
+            showWord();
+        } else {
+            alert("Пожалуйста, введите перевод перед переходом к следующему слову.");
+        }
+    });
+
+    submitButton.addEventListener('click', () => {
+        let score = 0;
+        let feedback = '';
+
+        selectedSet.forEach((word) => {
+            if (word.userAnswer === word.translation) {
+                score++;
+                feedback += `<p style="color: green;">${word.japanese} - Правильно!</p>`;
+            } else {
+                feedback += `<p style="color: red;">${word.japanese} - Неправильно! Правильный ответ: ${word.translation}</p>`;
+            }
+        });
+
+        resultContainer.innerHTML = `<h2>Результаты:</h2><p>Ваш счет: ${score} из ${selectedSet.length}</p>${feedback}`;
+        
+        // Показать кнопку Назад после завершения теста
+        backButton.classList.remove('hidden');
+    });
+
+    backButton.addEventListener('click', showStartScreen); // Обработчик для кнопки Назад
+
+</script>
+
+</body>
+</html>
