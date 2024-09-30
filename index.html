@@ -6,59 +6,71 @@
     <title>Изучение японского языка</title>
     <style>
         body {
-            font-family: 'Comic Sans MS', 'Arial', sans-serif; /* Шрифт в стиле аниме */
-            background: url('images/a01bf2c5564f933dcf1cb2de9945a145.jpg') no-repeat center center fixed; /* Локальное фоновое изображение */
-            background-size: cover; /* Заполнение фона */
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            background: url('images/a01bf2c5564f933dcf1cb2de9945a145.jpg') no-repeat center center fixed;
+            background-size: cover;
             margin: 0;
             padding: 20px;
-            color: #6264f1; /* Темный текст */
+            color: #6264f1;
         }
         h1 {
             text-align: center;
-            color: #ff69b4; /* Яркий цвет заголовка */
+            color: #ff69b4;
             font-size: 3em;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Тень для заголовка */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
         }
         .welcome {
             text-align: center;
             margin-top: 20px;
-            color: #e4368d; /* Цвет текста на приветственном экране */
+            color: #e4368d;
         }
         .gif-container {
             text-align: center;
-            margin: 20px auto; /* Центрирование GIF */
+            margin: 20px auto;
         }
         .card {
-            background: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый фон карточки */
+            background: rgba(255, 255, 255, 0.9);
             padding: 20px;
-            margin: 10px auto; /* Центрирование карточки */
-            border-radius: 5px; /* Уменьшенный радиус для прямоугольной формы */
+            margin: 10px auto;
+            border-radius: 5px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            width: 400px; /* Фиксированная ширина карточки */
-            text-align: center; /* Центрирование текста внутри карточки */
+            width: 400px;
+            text-align: center;
         }
         button {
-            background-color: #ff1493; /* Цвет кнопок */
+            background-color: #ff1493;
             color: white;
             border: none;
-            padding: 15px; /* Увеличенные отступы для кнопок */
+            padding: 15px;
             border-radius: 10px;
             cursor: pointer;
-            font-size: 1.2em; /* Увеличенный размер шрифта */
+            font-size: 1.2em;
             margin-top: 10px;
-            transition: background-color 0.3s ease; /* Плавный переход цвета при наведении */
+            transition: background-color 0.3s ease;
         }
         button:hover {
-            background-color: #c71585; /* Цвет кнопки при наведении */
+            background-color: #c71585;
         }
         .result {
             margin-top: 20px;
             font-weight: bold;
-            text-align: center; /* Центрирование результатов */
+            text-align: center; 
+            color: #e4368d; /* Измененный цвет для результатов */
         }
         .hidden {
-            display: none;
+            display: none; 
+        }
+        .results-container {
+            display: flex; /* Use flexbox for layout */
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+        }
+        .results-container img {
+            width: 300px; /* Increased width for the GIF */
+            max-width: 100%; /* Ensure responsiveness */
+            height: auto; /* Maintain aspect ratio */
+            margin-left: 20px; /* Space between text and GIF */
         }
     </style>
 </head>
@@ -66,17 +78,16 @@
 
 <h1>テスト (Тест) по японскому языку</h1>
 
-<!-- Welcome Screen -->
 <div class="welcome">
     <h2>Добро пожаловать!</h2>
     <p>Нажмите "Продолжить", чтобы выбрать комплект слов.</p>
 </div>
 
 <div class="gif-container">
-    <img src="images/hatsune-miku-anime.gif" alt="Hatsune Miku" width="300"> <!-- GIF Hatsune Miku -->
+    <img src="images/hatsune-miku-anime.gif" alt="Hatsune Miku" width="300">
 </div>
 
-<button id="continue-btn">Продолжить</button> <!-- Кнопка Продолжить -->
+<button id="continue-btn">Продолжить</button>
 
 <div id="start-screen" class="hidden">
     <h2>Выберите комплект слов:</h2>
@@ -87,13 +98,36 @@
 <div id="quiz-container" class="hidden"></div>
 <button id="next-btn" class="hidden">次へ (Далее)</button>
 <button id="submit-btn" class="hidden">結果を確認する (Проверить ответы)</button>
-<button id="back-btn" class="hidden">Назад</button> <!-- Кнопка Назад -->
+<button id="back-btn" class="hidden">Назад</button>
+
 <div class="result" id="result-container"></div>
+
+<!-- Фоновая музыка -->
+<audio id="background-music" loop autoplay>
+    <source src="Sound/keeno - morning haze.mp3" type="audio/mpeg">
+    Ваш браузер не поддерживает аудио.
+</audio>
+
+<!-- Звуки для эффектов -->
+<audio id="hover-sound">
+    <source src="Sound/hover-sound.mp3" type="audio/mpeg">
+    Ваш браузер не поддерживает аудио.
+</audio>
+<audio id="click-sound">
+    <source src="Sound/click-sound.mp3" type="audio/mpeg">
+    Ваш браузер не поддерживает аудио.
+</audio>
+<audio id="completion-sound">
+    <source src="Sound/completion-sound.mp3" type="audio/mpeg">
+    Ваш браузер не поддерживает аудио.
+</audio>
+
+<button id="music-toggle-btn">Отключить музыку</button>
 
 <script>
     const sets = {
         set1: [
-            { japanese: "Конбанва", translation: "Приветствие на вечер" },
+        { japanese: "Конбанва", translation: "Приветствие на вечер" },
             { japanese: "Охай", translation: "Приветствие утром" },
             { japanese: "Данойни ", translation: "Каким образом" },
             { japanese: "Нипон", translation: "Япония" },
@@ -141,23 +175,42 @@
 			{japanese :"Боку",translation :"Я"} 
         ],
         set2 : [
-             {japanese : "おはようございます" ,translation : "Доброе утро"}, 
-             {japanese : "こんばんは" ,translation : "Добрый вечер"}, 
-             {japanese : "すみません" ,translation : "Извините"}, 
-             {japanese : "どういたしまして" ,translation : "Пожалуйста"}, 
-             {japanese : "おやすみなさい" ,translation : "Спокойной ночи"} 
-         ]
+          // Ваши слова...
+        ]
     };
 
     let currentWordIndex = 0;
     let selectedSet = [];
+    let musicPlaying = true;
 
     const startScreen = document.getElementById('start-screen');
     const quizContainer = document.getElementById('quiz-container');
     const resultContainer = document.getElementById('result-container');
     const nextButton = document.getElementById('next-btn');
     const submitButton = document.getElementById('submit-btn');
-    const backButton = document.getElementById('back-btn'); // Кнопка Назад
+    const backButton = document.getElementById('back-btn');
+    
+    const music = document.getElementById('background-music');
+    
+    // Sound effect elements
+    const hoverSound = document.getElementById('hover-sound');
+    const clickSound = document.getElementById('click-sound');
+    const completionSound = document.getElementById('completion-sound');
+
+    function playHoverSound() {
+        hoverSound.currentTime = 0; // Reset time to allow replay
+        hoverSound.play();
+    }
+
+    function playClickSound() {
+        clickSound.currentTime = 0; // Reset time to allow replay
+        clickSound.play();
+    }
+
+    function playCompletionSound() {
+        completionSound.currentTime = 0; // Reset time to allow replay
+        completionSound.play();
+    }
 
     function showWord() {
         if (currentWordIndex < selectedSet.length) {
@@ -181,7 +234,7 @@
 
        startScreen.classList.add('hidden');
        quizContainer.classList.remove('hidden');
-       backButton.classList.remove('hidden'); // Показываем кнопку Назад
+       backButton.classList.remove('hidden'); 
        
        showWord();
    }
@@ -189,24 +242,31 @@
    function showStartScreen() {
        startScreen.classList.remove('hidden');
        quizContainer.classList.add('hidden');
-       resultContainer.innerHTML = ''; // Очищаем результаты
-       backButton.classList.add('hidden'); // Скрываем кнопку Назад
+       resultContainer.innerHTML = ''; 
+       backButton.classList.add('hidden'); 
    }
 
    document.getElementById('continue-btn').addEventListener('click', () => {
-       document.querySelector('.welcome').classList.add('hidden'); // Скрываем приветственный экран
-       document.querySelector('.gif-container').classList.add('hidden'); // Скрываем GIF
-       startScreen.classList.remove('hidden'); // Показываем экран выбора комплекта
+       playClickSound(); // Play click sound
+       document.querySelector('.welcome').classList.add('hidden'); 
+       document.querySelector('.gif-container').classList.add('hidden'); 
+       startScreen.classList.remove('hidden'); 
    });
 
-   document.getElementById('set1-btn').addEventListener('click', () => startQuiz(sets.set1));
-   document.getElementById('set2-btn').addEventListener('click', () => startQuiz(sets.set2));
+   document.getElementById('set1-btn').addEventListener('click', () => { 
+       playClickSound(); // Play click sound
+       startQuiz(sets.set1);
+   });
+   document.getElementById('set2-btn').addEventListener('click', () => { 
+       playClickSound(); // Play click sound
+       startQuiz(sets.set2);
+   });
 
    nextButton.addEventListener('click', () => {
        const userAnswer = document.getElementById('answer').value.trim();
        
        if (userAnswer) {
-           selectedSet[currentWordIndex].userAnswer = userAnswer; // Сохраняем ответ пользователя
+           selectedSet[currentWordIndex].userAnswer = userAnswer; 
            currentWordIndex++;
            showWord();
        } else {
@@ -227,14 +287,46 @@
            }
        });
 
-       resultContainer.innerHTML = `<h2>Результаты:</h2><p>Ваш счет:${score} из ${selectedSet.length}</p>${feedback}`;
+       resultContainer.innerHTML = `
+           <div class="results-container">
+               <div>
+                   <h2>Результаты:</h2>
+                   <p>Ваш счет:${score} из ${selectedSet.length}</p>${feedback}
+               </div>
+               <img src="images/rikka-takanashi-takanashi-rikka.gif" alt="Rikka Takanashi GIF">
+           </div>`;
        
-       // Показать кнопку Назад после завершения теста
-       backButton.classList.remove('hidden');
+       playCompletionSound(); // Play completion sound when test is finished
+       
+       backButton.classList.remove('hidden'); 
    });
 
-   backButton.addEventListener('click', showStartScreen); // Обработчик для кнопки Назад
+   backButton.addEventListener('click', showStartScreen); 
 
+   // Music toggle functionality
+   document.getElementById('music-toggle-btn').addEventListener('click', () => {
+       if (musicPlaying) {
+           music.pause();
+           musicPlaying = false;
+           document.getElementById('music-toggle-btn').textContent = 'Включить музыку';
+       } else {
+           music.play();
+           musicPlaying = true;
+           document.getElementById('music-toggle-btn').textContent = 'Отключить музыку';
+       }
+   });
+
+   // Add event listeners for hover effects on buttons
+   const buttons = [document.getElementById('continue-btn'), 
+                    document.getElementById('set1-btn'), 
+                    document.getElementById('set2-btn'), 
+                    nextButton, 
+                    submitButton, 
+                    backButton];
+
+   buttons.forEach(button => {
+       button.addEventListener('mouseover', playHoverSound);
+   });
 </script>
 
 </body>
