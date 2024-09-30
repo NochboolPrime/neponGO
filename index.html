@@ -67,11 +67,19 @@
             justify-content: center; /* Center horizontally */
         }
         .results-container img {
-            width: 300px; /* Increased width for the GIF */
-            max-width: 100%; /* Ensure responsiveness */
-            height: auto; /* Maintain aspect ratio */
-            margin-left: 20px; /* Space between text and GIF */
-        }
+    height: 200px; /* Set a fixed height for the GIF */
+    width: auto; /* Maintain aspect ratio */
+    max-width: 100%; /* Ensure it doesn't exceed container width */
+    margin-left: 20px; /* Space between text and GIF */
+}
+
+@media (max-width: 768px) {
+    .results-container img {
+        height: 150px; /* Smaller height for mobile devices */
+    }
+}
+
+
     </style>
 </head>
 <body>
