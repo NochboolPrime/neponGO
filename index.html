@@ -20,13 +20,24 @@
             margin-bottom: 20px;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Тень для заголовка */
         }
+        .welcome {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 2em;
+            color: #e4368d; /* Цвет текста на приветственном экране */
+        }
+        .gif-container {
+            text-align: center;
+            margin: 20px auto; /* Центрирование GIF */
+        }
         .card {
             background: rgba(255, 255, 255, 0.9); /* Полупрозрачный белый фон карточки */
             padding: 20px;
             margin: 10px auto; /* Центрирование карточки */
-            border-radius: 15px;
+            border-radius: 5px; /* Уменьшенный радиус для прямоугольной формы */
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            max-width: 400px; /* Максимальная ширина карточки */
+            width: 400px; /* Фиксированная ширина карточки */
+            text-align: center; /* Центрирование текста внутри карточки */
         }
         button {
             background-color: #ff1493; /* Цвет кнопок */
@@ -56,7 +67,19 @@
 
 <h1>テスト (Тест) по японскому языку</h1>
 
-<div id="start-screen">
+<!-- Welcome Screen -->
+<div class="welcome">
+    <h2>Добро пожаловать!</h2>
+    <p>Нажмите "Продолжить", чтобы выбрать комплект слов.</p>
+</div>
+
+<div class="gif-container">
+    <img src="images/hatsune-miku-anime.gif" alt="Hatsune Miku" width="300"> <!-- GIF Hatsune Miku -->
+</div>
+
+<button id="continue-btn">Продолжить</button> <!-- Кнопка Продолжить -->
+
+<div id="start-screen" class="hidden">
     <h2>Выберите комплект слов:</h2>
     <button id="set1-btn">Комплект 1</button>
     <button id="set2-btn">Комплект 2</button>
@@ -129,6 +152,12 @@
         resultContainer.innerHTML = ''; // Очищаем результаты
         backButton.classList.add('hidden'); // Скрываем кнопку Назад
     }
+
+    document.getElementById('continue-btn').addEventListener('click', () => {
+        document.querySelector('.welcome').classList.add('hidden'); // Скрываем приветственный экран
+        document.querySelector('.gif-container').classList.add('hidden'); // Скрываем GIF
+        startScreen.classList.remove('hidden'); // Показываем экран выбора комплекта
+    });
 
     document.getElementById('set1-btn').addEventListener('click', () => startQuiz(sets.set1));
     document.getElementById('set2-btn').addEventListener('click', () => startQuiz(sets.set2));
