@@ -1,0 +1,103 @@
+body {
+    font-family: 'Comic Sans MS', 'Arial', sans-serif;
+    background: url('images/a01bf2c5564f933dcf1cb2de9945a145.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 20px;
+    color: #6264f1;
+}
+
+h1 {
+    text-align: center;
+    color: #ff69b4;
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.welcome {
+    text-align: center;
+    margin-top: 20px;
+    color: #e4368d;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.gif-container {
+    text-align: center;
+    margin: 20px auto;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    margin: 10px auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    width: 400px; /* Fixed width for larger screens */
+}
+
+button {
+    background-color: #ff1493;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.2em;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #c71585;
+}
+
+.result {
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center; 
+    color: #e4368d; /* Измененный цвет для результатов */
+}
+
+.hidden {
+    display: none; 
+}
+
+.results-container {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+
+.results-container img {
+    height: auto; /* Maintain aspect ratio */
+    width: 100px; /* Set a fixed width for the GIF */
+    max-width: 100%; /* Ensure it doesn't exceed container width */
+    margin-left: 20px; /* Space between text and GIF */
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    .card {
+        width: 90%; /* Adjust card width for mobile devices */
+        margin-top: 10px; /* Add some space above the card */
+        padding-left: 10px; /* Add some padding to the left and right */
+        padding-right: 10px; 
+        box-shadow: none; /* Optional - remove shadow on mobile for simplicity */
+        border-radius: 5px; /* Maintain rounded corners */
+    }
+
+   .results-container img {
+       height: auto; /* Maintain aspect ratio for smaller screens */
+       width: 80px; /* Smaller width for mobile devices */
+   }
+
+   h1 {
+       font-size: 2.5em; /* Smaller title size on mobile devices */
+   }
+
+   button {
+       font-size: 1em; /* Adjust button size on mobile devices */
+       padding: 10px; /* Smaller padding for buttons on mobile */
+   }
+}
