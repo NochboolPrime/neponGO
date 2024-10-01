@@ -1,3 +1,6 @@
+/*script.css*/
+
+
 const sets = {
     set1: [
     { japanese: "Конбанва", translation: "Приветствие на вечер" },
