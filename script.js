@@ -199,3 +199,7 @@ const buttons = [document.getElementById('continue-btn'),
 buttons.forEach(button => {
    button.addEventListener('mouseover', playHoverSound);
 });
+
+document.getElementById('refresh-btn').addEventListener('click', function() {
+    window.location.reload();
+});
