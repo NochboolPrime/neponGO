@@ -1,7 +1,3 @@
-
-<!-- index.html -->
-
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -9,22 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Изучение японского языка</title>
     <link rel="stylesheet" href="style.css">
-
-
-
 </head>
 
-<button id="refresh-btn">Обновить страницу</button>
 <body>
 
+<button id="refresh-btn">Обновить страницу</button>
 <h1>テスト (Тест) по японскому языку</h1>
 
 <div class="welcome">
     <h2>Добро пожаловать!</h2>
     <p>Нажмите "Продолжить", чтобы выбрать комплект слов.</p>
 </div>
-
-
 
 <div class="gif-container">
     <img src="images/hatsune-miku-anime.gif" alt="Hatsune Miku" width="300">
@@ -34,8 +25,12 @@
 
 <div id="start-screen" class="hidden">
     <h2>Выберите комплект слов:</h2>
-    <button id="set1-btn">Комплект 1</button>
-    <button id="set2-btn">Комплект 2</button>
+    <div class="word-set-buttons">
+        <button id="set1-btn">Комплект 1</button>
+        <button onclick="window.location.href='dictionary_set1.html'">Словарь Комплекта 1</button>
+        <button id="set2-btn">Комплект 2</button>
+        <button onclick="window.location.href='dictionary_set2.html'">Словарь Комплекта 2</button>
+    </div>
 </div>
 
 <div id="quiz-container" class="hidden"></div>

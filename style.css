@@ -59,6 +59,7 @@ button:hover {
     font-weight: bold;
     text-align: center; 
     color: #e4368d; /* Измененный цвет для результатов */
+   
 }
 
 .hidden {
@@ -66,10 +67,16 @@ button:hover {
 }
 
 .results-container {
-    display: flex; /* Use flexbox for layout */
+    display: inline-flex; /* Use inline-flex for layout to fit text */
     align-items: center; /* Center vertically */
     justify-content: center; /* Center horizontally */
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px; /* Padding around the text */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    margin: 0 auto; /* Center horizontally in its parent */
 }
+
 
 .results-container img {
     height: auto; /* Maintain aspect ratio */

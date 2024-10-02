@@ -50,7 +50,7 @@ const sets = {
         {japanese :"Боку",translation :"Я"} 
     ],
     set2 : [
-      // Ваши слова...
+        { japanese: "Конбанва", translation: "Приветствие на вечер" },
     ]
 };
 

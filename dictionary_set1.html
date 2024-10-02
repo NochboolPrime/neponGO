@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Словарь Комплекта 1</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to your existing CSS -->
+    <style>
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            background: url('images/a01bf2c5564f933dcf1cb2de9945a145.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 20px;
+            color: #6264f1;
+            text-align: center; /* Center text in body */
+        }
+        h1 {
+            color: #ff69b4;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .dictionary-container {
+            display: flex; /* Use flexbox for layout */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            flex-direction: column; /* Stack items vertically on small screens */
+        }
+        .dictionary {
+            max-width: 600px; /* Set a max width for the dictionary */
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            margin-bottom: 20px; /* Space below the dictionary */
+        }
+        .entry {
+            margin-bottom: 10px; /* Space between entries */
+        }
+        button {
+            background-color: #ff1493;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+            margin-top: 20px;
+            width: 100%; /* Full width for button */
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #c71585;
+        }
+        .gif {
+            width: 150px; /* Set width for the GIFs */
+            height: auto; /* Maintain aspect ratio */
+            margin-left: 20px; /* Space between GIF and dictionary */
+        }
+
+        /* Media query for mobile devices */
+        @media (max-width: 768px) {
+            .dictionary-container {
+                flex-direction: column; /* Stack items vertically on small screens */
+                align-items: center; /* Center items on small screens */
+                padding-left: 10px; /* Add some padding to the left and right */
+                padding-right: 10px; 
+            }
+
+           .dictionary {
+               width: 90%; /* Adjust dictionary width for mobile devices */
+           }
+
+           .gif {
+               width: 100%; /* Make GIF responsive on mobile devices */
+               max-width: none; /* Remove max-width constraint on mobile */
+           }
+
+           h1 {
+               font-size: 2em; /* Smaller title size on mobile devices */
+           }
+
+           button {
+               font-size: 1em; /* Adjust button size on mobile devices */
+               padding: 10px; /* Smaller padding for buttons on mobile */
+           }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Словарь Комплекта 1</h1>
+
+<div class="dictionary-container">
+    <img src="images/strike-witches-world-witches-series.gif" alt="Strike Witches" class="gif">
+    
+    <div class="dictionary">
+        <div class="entry">こんばんは (конбанва) - Приветствие на вечер</div>
+        <div class="entry">おはよう (охаю) - Приветствие утром</div>
+        <div class="entry">どのように (данойни) - Каким образом</div>
+        <div class="entry">にほん (нипон) - Япония</div>
+        <div class="entry">なまえ (намае) - Имя</div>
+        <div class="entry">どう (доу) - Как</div>
+        <div class="entry">よかった (ёкотта) - Хорошо</div>
+        <div class="entry">きれい (кирэй) - Чистый</div>
+        <div class="entry">なに (нини) - Что</div>
+        <div class="entry">して (сите) - Свершать, делать</div>
+        <div class="entry">きょう (киёу) - Сегодня</div>
+        <div class="entry">なぜ (нэзе) - Почему</div>
+        <div class="entry">ありがとう (аригатоу) - Спасибо</div>
+        <div class="entry">たい (тай) - Должно быть</div>
+        <div class="entry">やった (ята) - Сделал</div>
+        <div class="entry">そう (со) - Так</div>
+        <div class="entry">にほんご (нипонго) - Японский язык</div>
+        <div class="entry">ください (кадайсай) - Дайте</div>
+        <div class="entry">大丈夫 (дайёбу) - Все в порядке</div>
+        <div class="entry">ふるしい (фурусиши) - Старый</div>
+        <div class="entry">みょうに (миёнуи) - Завтра</div>
+        <div class="entry">きのう (киной) - Вчера</div>
+        <div class="entry">です (дэсу) - Форма глагола быть/считать</div>
+        <div class="entry">上手 (суру) - Опытный</div>
+        <div class="entry">本当 (хонто) - Действительно</div>
+        <div class="entry">何 (ни) - Что</ div> 
+        <div class= " entry "> 出来 ( декёру ) - Справиться, сделать.</ div> 
+        <div class= " entry "> 行う ( икёу ) - Делать.</ div> 
+        <div class= " entry "> 有り ( ари ) - Есть.</ div> 
+        <div class= " entry "> 時間 ( jikân ) - Время.</ div> 
+        <div class= " entry "> 寝る　( ниру )　- Спать.</ div> 
+        <div class= " entry "> かかった　( попался )- Какатта. </ div> 
+        <div class= " entry "> 僕　( я )- Боке. </ div> 
+   </ div>
+
+    </ div>
+
+    <!-- Include hover sound -->
+<audio id="hover-sound">
+    <source src="Sound/hover-sound.mp3" type="audio/mpeg">
+    Ваш браузер не поддерживает аудио.
+</audio>
+
+<button id="back-btn" onclick="playHoverSound(); history.back()">Назад к выбору комплекта слов</button>
+
+<script src="script.js"></script>
+
+<script>
+// Play hover sound function
+const hoverSound = document.getElementById('hover-sound');
+
+function playHoverSound() {
+   hoverSound.currentTime = 0; // Reset time to allow replay
+   hoverSound.play();
+}
+
+// Add event listener for hover effect on back button
+document.getElementById('back-btn').addEventListener('mouseover', playHoverSound);
+</script>
+
+</body>
+
+</html>
+
